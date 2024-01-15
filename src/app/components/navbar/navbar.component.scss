@@ -1,0 +1,50 @@
+*{
+    background-color: #141416;
+    padding: 5px;
+    color: white;
+    
+}
+
+a:hover{
+    color: #D25454;
+}
+
+.nav-link:active{
+    color: #D25454 !important;
+}
+
+.btn{
+    border-color: aliceblue;
+    color: aliceblue;
+    border-radius: 8px;
+}
+
+.prefereceSP{
+    background-color: #EFB810;
+    border-color: #EFB810;
+    color: aliceblue;
+    border-end-start-radius: 8px;
+    border-start-start-radius: 8px;
+    border-style:none;
+    
+}
+
+.prefereceEN{
+    background-color: #EFB810;
+    border-color: #EFB810;
+    color: aliceblue;
+    border-end-end-radius: 8px;
+    border-start-end-radius: 8px;
+    border-style: none;
+
+}
+
+img{
+    width: 25px;
+    height: 25px
+    
+}
+.prefereceEN:hover, .prefereceSP:hover {
+    background-color: #7c0404; /* Cambia el color de fondo a uno más oscuro */
+    /* Agrega cualquier otra propiedad adicional que desees */
+  }
