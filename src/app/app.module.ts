@@ -13,11 +13,17 @@ import { SupportManagerComponent } from './pages/support-manager/support-manager
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { Error404Component } from './pages/error404/error404.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TicketsComponent } from './pages/tickets/tickets.component';
+import { NewComponent } from './pages/new/new.component';
+import { HelpComponent } from './pages/help/help.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     Error404Component,
+    TicketsComponent,
+    NewComponent,
+    HelpComponent,
     
   ],
   imports: [

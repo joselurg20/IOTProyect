@@ -1,1 +1,53 @@
-hola
+<body>
+    <div class="contenedor overflow-hidden">
+
+        <div class="container mt-7">
+
+            <h2>Crear Incidencia</h2>
+
+            <!-- Formulario de Crear Incidencia -->
+            <form>
+                <!-- Título de la Incidencia -->
+                <div class="form-group">
+                    <label for="titulo"><i class="fa-solid fa-pen"></i>Título:</label>
+                    <input type="text" class="form-control" id="titulo" placeholder="Ingrese el título">
+                </div>
+
+                <!-- Descripción de la Incidencia -->
+                <div class="form-group">
+                    <label for="descripcion"><i class="fa-solid fa-file-pen"></i>Descripción:</label>
+                    <textarea class="form-control" id="descripcion" rows="3"
+                        placeholder="Ingrese la descripción"></textarea>
+                </div>
+
+                <!-- Archivos Adjuntos -->
+                <div class="form-group">
+                    <label for="archivos"><i class="fa-solid fa-folder"></i>Adjuntar Archivos: </label> <br>
+                    <input type="file" class="form-control-file" id="archivos" multiple>
+                </div>
+
+                <!-- Nombre del Usuario -->
+                <div class="form-group">
+                    <label for="nombre"><i class="fa-solid fa-user"></i>Nombre:</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre">
+                </div>
+
+                <!-- Email del Usuario -->
+                <div class="form-group">
+                    <label for="email"><i class="fa-solid fa-envelope"></i> Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Ingrese su email">
+                </div>
+
+                <!-- Botón de Enviar -->
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="submit" class="btn btn-lg ">Enviar Incidencia</button>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="logotipe">
+            <img src="/assets/img/IoTlogo.png" alt="">
+        </div>
+    </div>
+</body>
