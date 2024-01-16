@@ -14,5 +14,10 @@ export class NavbarComponent implements OnInit {
     throw new Error('Method not implemented.');
   }
 
+  logout(){
+    localStorage.clear();
+    window.location.reload();
+  }
+
 
 }
