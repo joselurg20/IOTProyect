@@ -1,9 +1,10 @@
+// src\app\pages\homepage\homepage.component.scss
 *{
     padding: 10px;
     
 }
 body{
-    background-color: #141416;
+    background-color:/* #1D2939*/ #231E36;
     overflow: hidden;
     
 }
@@ -32,10 +33,10 @@ h2{
 .contenedor {
     margin: 2rem auto;
     border-radius: 8px;
-    background-color: #fff;
+    background-color: #1D2939;
     width: 900px;
     padding: 20px;
-    color: #141416;
+    color:/* #141416*/ white;
     outline: none;
     box-shadow: none;
    
@@ -47,6 +48,9 @@ h2{
   outline: none !important;
   
   box-shadow: none !important;
+
+  border-color:#EFB810 ;
+
 }
 
 .container:active{
@@ -74,3 +78,4 @@ img{
     width: 350px; 
     height: auto;
 }
+

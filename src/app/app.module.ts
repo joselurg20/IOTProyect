@@ -24,6 +24,7 @@ import { HelpComponent } from './pages/help/help.component';
     TicketsComponent,
     NewComponent,
     HelpComponent,
+    SupportManagerComponent,
     
   ],
   imports: [
