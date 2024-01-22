@@ -1,1 +1,37 @@
-<p>login works!</p>
+<!-- login.component.html -->
+<div class="container mt-lg-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form>
+                <h2 class="mb-3">Inicio de Sesión</h2>
+
+                <!-- Campo de Usuario -->
+                <div class="mb-3">
+                    <label for="username" class="form-label">Usuario</label>
+                    <input type="text" class="form-control" id="username" placeholder="Ingrese su usuario">
+                </div>
+
+                <!-- Campo de Contraseña -->
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña">
+                </div>
+
+            
+                      <!-- Botón de Inicio de Sesión -->
+                <div class="d-grid mb-3">
+                    <button class="btn btn-primary" [disabled]="!loginForm.valid" type="button" type="submit" class="btn btn-lg">Acceder</button>
+                </div>
+        
+                <!-- Opción de Recuperar Contraseña -->
+                <div class="link mb-3">
+                    <a href="#" class="link-primary-light">¿Olvidó su contraseña? Recupérela aquí</a>
+                </div>
+
+            </form>
+        </div>
+        <div class="logotipe">
+            <img src="/assets/img/IoTlogo.png" alt="">
+        </div>
+    </div>
+</div>

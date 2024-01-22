@@ -1,13 +1,8 @@
 // src\app\pages\homepage\homepage.component.scss
 *{
-    padding: 10px;
-    
+  padding: 6px;
 }
-body{
-    background-color:/* #1D2939*/ #231E36;
-    overflow: hidden;
-    
-}
+
 
 ::-webkit-scrollbar {
     width: 8px;
@@ -33,7 +28,7 @@ h2{
 .contenedor {
     margin: 2rem auto;
     border-radius: 8px;
-    background-color: #1D2939;
+    background-color: #202124;
     width: 900px;
     padding: 20px;
     color:/* #141416*/ white;
@@ -78,4 +73,5 @@ img{
     width: 350px; 
     height: auto;
 }
+
 
