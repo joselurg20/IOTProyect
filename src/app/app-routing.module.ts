@@ -28,7 +28,7 @@ const routes: Routes = [
   },
 
   {
-    path: '', redirectTo: 'login'/*'homepage'*/, pathMatch: 'full'
+    path: '', redirectTo: 'support-manager'/*'homepage'*/, pathMatch: 'full'
   },
 
   {

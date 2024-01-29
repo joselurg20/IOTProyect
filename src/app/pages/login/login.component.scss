@@ -12,7 +12,35 @@ h2{
     width: 800px;
     height: 580px;
     padding: 70px;
-    border-radius:8px ;
+    border-radius:25px ;
+    
+}
+
+.container input{
+    border-style: none;
+    border-bottom: 1px solid white;
+    background-color: #202124;
+    color: white;
+}
+
+/* Estilizando el marcador de posición para todos los inputs */
+input::placeholder {
+    color: #999; /* Color del texto del marcador de posición */
+    font-style: italic; /* Estilo de fuente del marcador de posición */
+  }
+  
+  /* Estilizando el marcador de posición para un input específico */
+  #myInput::placeholder {
+    font-weight: bold; /* Otro estilo de fuente del marcador de posición */
+  }
+
+.container input:focus,
+.container textarea:focus,
+.container select:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: #EFB810;
+
 }
 
 .btn{
@@ -21,6 +49,7 @@ h2{
     border-radius: 8px;
     border-style:none;
     color: black;
+
 }
 
 .btn:hover{
@@ -41,7 +70,3 @@ img{
 .logotipe{
     text-align: center;
 }
-
-body {
-    background-color: lightblue;
-  }

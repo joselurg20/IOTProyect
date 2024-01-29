@@ -1,17 +1,6 @@
 <ul class="nav justify-content-end">
-
   <li class="nav-item">
-
-    <!--
-<div class="container-fluid">
-<img src="favicon.ico" alt="Bootstrap" width="80" height="80">
-<a class="navbar-brand" href="#">IThings</a>
-</div>
-</li>
--->
-
-  <li class="nav-item ">
-    <a class="nav-link active" aria-current="page" routerLink="/">Inicio</a>
+    <a class="nav-link" href="#" aria-current="page" routerLink="/">Inicio</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" routerLink="/new">Tickets</a>
@@ -22,12 +11,11 @@
   <li>
     <a class="nav-link" routerLink="/help">Ayuda</a>
   </li>
-  <li>
+  <li class="boton">
     <button class="btn" (click)="logout()">Logout<i class="fa-solid fa-user"></i></button>
   </li>
-
   <li>
-    <button class="prefereceSP active">ES <img src="/assets/img/spain.png" alt=""></button>
-    <button class="prefereceEN">EN <img src="/assets/img/england.png" alt=""></button>
+    <button type="button" class="btn" [class.active]="esButtonPressed" (click)="toggleButtons('es')">ES<img src="https://static.parastorage.com/services/linguist-flags/1.663.0/assets/flags/round/ESP.png" srcset="https://static.parastorage.com/services/linguist-flags/1.663.0/assets/flags/round/ESP.png, https://static.parastorage.com/services/linguist-flags/1.663.0/assets/flags/round/ESP_2x.png 2x" alt="Spanish"></button>
+    <button type="button" class="btn" [class.active]="enButtonPressed" (click)="toggleButtons('en')">EN<img src="https://static.parastorage.com/services/linguist-flags/1.663.0/assets/flags/round/GBR.png" srcset="https://static.parastorage.com/services/linguist-flags/1.663.0/assets/flags/round/GBR.png, https://static.parastorage.com/services/linguist-flags/1.663.0/assets/flags/round/GBR_2x.png 2x" alt="English"></button>
   </li>
 </ul>
