@@ -10,14 +10,26 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  esButtonPressed: boolean = true;
+  enButtonPressed: boolean = false;
+
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    // Código de inicialización si es necesario
+  }
+
+  toggleButtons(language: string) {
+    if (language === 'es') {
+      this.esButtonPressed = true;
+      this.enButtonPressed = false;
+    } else if (language === 'en') {
+      this.esButtonPressed = false;
+      this.enButtonPressed = true;
+    }
   }
 
   logout(){
     localStorage.clear();
     window.location.reload();
   }
-
 
 }
