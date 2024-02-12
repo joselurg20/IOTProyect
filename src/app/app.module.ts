@@ -11,6 +11,8 @@ import { TicketsComponent } from './pages/tickets/tickets.component';
 import { NewComponent } from './pages/new/new.component';
 import { HelpComponent } from './pages/help/help.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -19,15 +21,18 @@ import { ReactiveFormsModule } from '@angular/forms';
     TicketsComponent,
     NewComponent,
     HelpComponent,
-    SupportManagerComponent,
-    
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NavbarComponent, 
     ReactiveFormsModule,
-    FontAwesomeModule,],
+    FontAwesomeModule,
+    SupportManagerComponent,
+
+    BrowserAnimationsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

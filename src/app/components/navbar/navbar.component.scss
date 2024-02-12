@@ -1,53 +1,141 @@
-*{
-    background-color: #141416;
-    padding: 5px;
-    color: white;
+.sidenav {
+  background: #202124;
+  transition: all .5s ease;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  width: 5rem;
+  height: 100vh;
+  //box-shadow: 0.063rem 0 1.25rem 0 #EFB810;
+
+  .logo-container {
+      display: flex;
+      align-items: center;
+      padding: 0.938rem 0.938rem 0 0.938rem;
+      width: 100%;
+
+      .logo {
+          background: #EFB810;
+          text-align: center;
+          width: 3rem;
+          min-width: 3rem;
+          border-radius: 0.313rem;
+          padding: 0.313rem;
+          font-size: 24px;
+          font-weight: 900;
+          cursor: pointer;
+          border: none;
+      }
+
+      .logo-text {
+        
+          margin-left: 1.5rem;
+          font-size: 24px;
+          font-weight: 700;
+          color: #EFB810;
+      }
+
+      .btn-close {
+          margin-left: auto;
+          cursor: pointer;
+          width: 2rem;
+          height: 2rem;
+          border-radius: 50%;
+          background-color: transparent;
+          border: none;
+          border-color: #202124;
+
+      
+
+          .fa-xmark {
+              color: #fff;
+              font-size: 24px;
+          }
+      }   
+       .btn-close button:focus {
+            outline: none !important;
+            box-shadow: none !important;
+            border-color:#EFB810 ;
+          }
+  }
 }
 
-/* Agregar regla para los enlaces activos */
-/* Modificar el color al pasar el mouse sobre los enlaces */
-.nav .nav-link:hover {
-  color: var(--bs-link-hover-color) !important;
+.sidenav-collapsed {
+  width: 16.5625rem;
 }
 
-/* Modificar el color de la opción seleccionada */
-.nav .nav-link.active,
-.nav .nav-link:active {
-  color: var(red) !important;
+.sidenav-nav {
+  list-style: none;
+  padding: 0.938rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100% - 3.65rem);
+  cursor: pointer;
+
+  .sidenav-nav-item {
+      width: 100%;
+      margin-bottom: 0.625rem;
+
+      .sidenav-nav-link {
+          display: flex;
+          align-items: center;
+          height: 3rem;
+          color: #f3f3f3;
+          text-decoration: none;
+          border-radius: 0.625rem;
+          transition: all .3s ease;
+
+          .sidenav-link-icon {
+              font-size: 22px;
+              width: 2rem;
+              min-width: 2rem;
+              margin: 0 0.5rem;
+              text-align: center;
+          }
+
+          .sidenav-link-text {
+              margin-left: 1.5rem;
+          }
+      }
+  }
+
+  .sidenav-nav-item:hover {
+      .sidenav-nav-link {
+          background-color: #EFB810;
+          color: #000;
+      }
+  }
+}
+
+.active {
+  background-color: #EFB810;
+
+  .sidenav-link-icon,
+  .sidenav-link-text {
+      color: black;
+  }
+}
+.sidenav-hr{
+  color: #fff;
+  background-color: #EFB810;
 }
 
 .btn{
-  color:aliceblue;
-  padding: 5px;
+  background-color: #202124;
+  border-color: #202124;
+  border-radius: 0.625rem;
+  transition: all .3s ease;
+  align-items: center;
+  justify-content: center;
 }
 
-.boton .btn {
-    background-color: #141416;
-    border-color: aliceblue;
-    color: aliceblue;
-    border-radius: 8px;
-    padding: 5px 10px;
-    position: relative;
-  }
-  
-  .boton .btn i {
-    margin-left: 5px;
-    transition: all 0.3s;
-    -webkit-transition: all 0.35s; /* Transición de color y color de fondo al pasar el mouse sobre el icono */
-  }
-  
-  .boton .btn:hover {
-    background-color: #6674A9; /* Cambiar el color de fondo al pasar el mouse sobre el botón */
-    color: #141416; /* Cambiar el color del texto al pasar el mouse sobre el botón */
-    border-color:black ;
-  }
-  
-  .boton .btn:hover i {
-    color: #141416; /* Cambiar el color del icono al pasar el mouse sobre el botón */
-    background-color: #6674A9; /* Cambiar el color de fondo del icono al pasar el mouse sobre el botón */
-  }
-
-img{
-    width: 28px;
-    height: auto;
+.btn:hover{
+  background-color: #D25454;
 }
+
+.btn.active{
+  background-color: #EFB810;
+}
+
