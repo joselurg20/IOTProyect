@@ -1,7 +1,45 @@
-*{
-    padding: 10px;
+* {
+  padding: 30px;
 }
 
-table{
-    border-radius: 10px;
+h2 {
+  font-size: 40px;
+  color: #EFB810;
+}
+
+.dashboard-content {
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+#main{
+  padding: 30px;
+  background-color: #202124;
+  border-radius:8px ;
+}
+th{
+  padding: 10px;
+  color: #202124;
+}
+td {
+  padding: 10px;
+  color: #fff;
+}
+
+th {
+  background-color: #EFB810 !important;
+}
+
+td {
+  background-color: #202124;
+}
+
+td:hover {
+  color: #202124;
+  background-color: #EFB810;
+
 }

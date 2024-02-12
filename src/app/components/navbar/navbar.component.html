@@ -1,21 +1,23 @@
-<ul class="nav justify-content-end">
-  <li class="nav-item">
-    <a class="nav-link" href="#" aria-current="page" routerLink="/">Inicio</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" routerLink="/new">Tickets</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" routerLink="/tickets">Ver Tickets</a>
-  </li>
-  <li>
-    <a class="nav-link" routerLink="/help">Ayuda</a>
-  </li>
-  <li class="boton">
-    <button class="btn" (click)="logout()">Logout<i class="fa-solid fa-user"></i></button>
-  </li>
-  <li>
-    <button type="button" class="btn" [class.active]="esButtonPressed" (click)="toggleButtons('es')">ES<img src="https://static.parastorage.com/services/linguist-flags/1.663.0/assets/flags/round/ESP.png" srcset="https://static.parastorage.com/services/linguist-flags/1.663.0/assets/flags/round/ESP.png, https://static.parastorage.com/services/linguist-flags/1.663.0/assets/flags/round/ESP_2x.png 2x" alt="Spanish"></button>
-    <button type="button" class="btn" [class.active]="enButtonPressed" (click)="toggleButtons('en')">EN<img src="https://static.parastorage.com/services/linguist-flags/1.663.0/assets/flags/round/GBR.png" srcset="https://static.parastorage.com/services/linguist-flags/1.663.0/assets/flags/round/GBR.png, https://static.parastorage.com/services/linguist-flags/1.663.0/assets/flags/round/GBR_2x.png 2x" alt="English"></button>
-  </li>
-</ul>
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed': ''">
+  <div class="logo-container">
+    <button class="logo" (click)="toggleCollapse()">IoT</button>
+    <div class="logo-text" @fadeInOut *ngIf="collapsed">IThings</div>
+    <button class="btn-close" @rotate *ngIf="collapsed" (click)="closeSidenav()">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <hr class="sidenav-hr">
+  <ul class="sidenav-nav">
+    <li class="sidenav-nav-item" *ngFor="let data of navData">
+      <a class="sidenav-nav-link" [routerLink]="[data.routeLink]" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}">
+        <i class="sidenav-link-icon" [class]="data.icon"></i>
+        <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">{{data.label}}</span>
+      </a>
+    </li>
+    <li>
+      <button type="button" class="btn" [class.active]="esButtonPressed" (click)="toggleButtons('es')"><img src="https://static.parastorage.com/services/linguist-flags/1.663.0/assets/flags/round/ESP.png" srcset="https://static.parastorage.com/services/linguist-flags/1.663.0/assets/flags/round/ESP.png, https://static.parastorage.com/services/linguist-flags/1.663.0/assets/flags/round/ESP_2x.png 2x" alt="Spanish"></button>
+      <button type="button" class="btn" [class.active]="enButtonPressed" (click)="toggleButtons('en')"><img src="https://static.parastorage.com/services/linguist-flags/1.663.0/assets/flags/round/GBR.png" srcset="https://static.parastorage.com/services/linguist-flags/1.663.0/assets/flags/round/GBR.png, https://static.parastorage.com/services/linguist-flags/1.663.0/assets/flags/round/GBR_2x.png 2x" alt="English"></button>
+    </li>
+  </ul>
+</div>
