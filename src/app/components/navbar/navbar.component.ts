@@ -1,6 +1,6 @@
 import { animate, keyframes, style, transition, trigger } from '@angular/animations';
 import { Component, Output, EventEmitter, OnInit, HostListener } from '@angular/core';
-import { navbarData } from './nav-data';
+import { navbarData } from '../../model/nav-data';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
