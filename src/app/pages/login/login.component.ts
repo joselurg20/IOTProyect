@@ -1,32 +1,59 @@
+import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { LoginService } from 'src/app/services/login.service';
+import { Router } from '@angular/router';
 
+function passwordValidator(control: FormControl): { [key: string]: any } | null {
+  const hasUppercase = /[A-Z]/.test(control.value); // Verifica si hay al menos una letra mayúscula
+  const hasNumber = /\d/.test(control.value); // Verifica si hay al menos un dígito numérico
+  const hasNonAlphanumeric = /\W/.test(control.value); // Verifica si hay al menos un carácter no alfanumérico
 
+  if (control.value && control.value.length >= 6 && hasUppercase && hasNumber && hasNonAlphanumeric) {
+    return null; // La contraseña cumple con todos los requisitos
+  } else {
+    return { 'passwordRequirements': true }; // La contraseña no cumple con los requisitos
+  }
+}
 
 @Component({
   selector: 'app-login',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  loginForm!: FormGroup; // Define loginForm como un FormGroup
+  public loginForm!: FormGroup; // Define loginForm como un FormGroup
 
-  constructor() {}
+  constructor(private loginService: LoginService, private router: Router) {}
 
   ngOnInit() {
     // Inicializa el formulario y sus controles
     this.loginForm = new FormGroup({
-      username: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required])
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, passwordValidator])
     });
   }
 
   onSubmit() {
     if (this.loginForm.valid) {
-      const username = this.loginForm.value.username;
+      const email = this.loginForm.value.email;
       const password = this.loginForm.value.password;
 
-      // Agrega aquí la lógica para enviar la solicitud de inicio de sesión con username y password
+      // Envia la solicitud de inicio de sesión al backend
+      this.loginService.login(email, password)
+      .subscribe({
+        next: (response) => {
+          localStorage.setItem('jwtToken', response);
+          console.log('Token JWT almacenado en localStorage:', response);
+          this.router.navigate(['/support-manager']);
+        },
+        error: (error) => {
+          console.error('Error en la solicitud:', error);
+        }
+      });
     }
   }
 }

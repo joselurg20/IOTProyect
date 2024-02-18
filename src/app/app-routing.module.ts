@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent, canActivate: []},
   {path: 'support-manager', component: SupportManagerComponent, canActivate: []},
   {path: 'support-technicial', component: SupportTechnicialComponent, canActivate: []},
-  {path: '', redirectTo: 'tickets'/*'homepage'*/, pathMatch: 'full'},
+  {path: '', redirectTo: 'new'/*'homepage'*/, pathMatch: 'full'},
   {path: "new", component: NewComponent, canActivate: []},
   {path: "tickets", component: TicketsComponent, canActivate: []},
   {path: "help", component: HelpComponent, canActivate: []}, 
