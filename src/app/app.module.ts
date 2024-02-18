@@ -14,6 +14,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +35,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     NavbarComponent, 
     ReactiveFormsModule,
@@ -32,6 +43,14 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     SupportManagerComponent,
 
     BrowserAnimationsModule,
+      MatGridListModule,
+      MatCardModule,
+      MatMenuModule,
+      MatIconModule,
+      MatButtonModule,
+      MatTableModule,
+      MatPaginatorModule,
+      MatSortModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

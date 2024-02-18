@@ -1,1 +1,10 @@
-
+<div *ngIf="users && users.length > 0">
+  <h2>Información del usuario</h2>
+  <ul>
+    <li *ngFor="let user of users">
+      <p>Id: {{ user.id }}</p>
+      <p>Nombre de usuario: {{ user.userName }}</p>
+      <p>Correo electrónico: {{ user.email }}</p>
+    </li>
+  </ul>
+</div>
