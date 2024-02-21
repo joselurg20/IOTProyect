@@ -10,7 +10,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TicketsComponent } from './pages/tickets/tickets.component';
 import { NewComponent } from './pages/new/new.component';
 import { HelpComponent } from './pages/help/help.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
@@ -37,8 +37,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    NavbarComponent, 
+    FormsModule,
     ReactiveFormsModule,
+    NavbarComponent, 
     FontAwesomeModule,
     SupportManagerComponent,
 

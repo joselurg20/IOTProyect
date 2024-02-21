@@ -2,25 +2,25 @@
 <div class="container mt-lg-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form>
+            <form [formGroup]="loginForm" (submit)="onSubmit()">
                 <h2 class="mb-3">Inicio de Sesión</h2>
 
                 <!-- Campo de Usuario -->
                 <div class="mb-3">
-                    <label for="username" class="form-label">Usuario</label>
-                    <input type="text" class="form-control" id="username" placeholder="Ingrese su usuario">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" class="form-control" id="email" placeholder="Ingrese su email" formControlName="email">
                 </div>
 
                 <!-- Campo de Contraseña -->
                 <div class="mb-3">
                     <label for="password" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña">
+                    <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña" formControlName="password">
                 </div>
 
             
                       <!-- Botón de Inicio de Sesión -->
                 <div class="d-grid mb-3">
-                    <button class="btn btn-primary" [disabled]="!loginForm.valid" type="button" type="submit" class="btn btn-lg">Acceder</button>
+                    <button class="btn btn-primary" [disabled]="!loginForm.valid" type="submit" class="btn btn-lg">Acceder</button>
                 </div>
         
                 <!-- Opción de Recuperar Contraseña -->
