@@ -15,25 +15,22 @@ export class LoginService {
   private readonly roleKey = 'userRole';
   private readonly userTicketIdsKey = 'userTicketIds';
 
-  // BehaviorSubject para almacenar el token de autenticación
   private authTokenSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
-  // BehaviorSubject para almacenar el ID del usuario
   private userIdSubject: BehaviorSubject<number | null> = new BehaviorSubject<number | null>(null);
   private userNameSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
   private emailSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
-  // BehaviorSubject para almacenar el rol del usuario
   private roleSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
   private ticketIdsSubject: BehaviorSubject<number[] | null> = new BehaviorSubject<number[] | null>(null);
 
   constructor(private http: HttpClient) {
-    // Al inicializar el servicio, verifica si hay un token almacenado en localStorage
+    
     const storedToken = localStorage.getItem(this.tokenKey);
     if (storedToken) {
       this.authTokenSubject.next(storedToken);
     }
   }
 
-  // Método para realizar la solicitud de inicio de sesión y almacenar el token de autenticación
+  
   login(email: string, password: string): Observable<any> {
     return this.http.post<any>(this.apiUrl, { email, password }).pipe(
       tap(response => {
@@ -73,7 +70,7 @@ export class LoginService {
     );
   }
 
-  // Método para cerrar sesión y eliminar el token de autenticación
+  
   logout(): void {
     localStorage.removeItem(this.tokenKey);
     localStorage.removeItem(this.userIdKey);
@@ -89,7 +86,7 @@ export class LoginService {
     this.ticketIdsSubject.next(null);
   }
 
-  // Métodos para acceder a los BehaviorSubjects
+  
   getAuthToken(): Observable<string | null> {
     return this.authTokenSubject.asObservable();
   }
