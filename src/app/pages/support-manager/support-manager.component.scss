@@ -31,7 +31,7 @@ table {
 }
 
 #main {
-  padding: 30px;
+  padding: 25px;
   background-color: #202124;
   border-radius: 8px;
   margin-top: 45px;
@@ -59,10 +59,10 @@ th:hover {
 }
 
 .container {
-  display: flex;
-  justify-content: center;
+ padding: 20px;
+ background-color: #202124;
 }
-#conten1, #conten2{
+#conten1, #conten2, #conten3{
   height: 400px;
 }
 
@@ -89,12 +89,14 @@ th:hover {
   padding: 10px;
   color: #fff;
   background-color: #202124;
-  border-radius: 8px;
+  border-radius: 10px;
+  width: 800px;
+  height: 400px;
 }
 
 #section4{
-  padding: 10px;
+  padding: 25px;
   color: #fff;
   background-color: #202124;
-  border-radius: 8px;
+  border-radius: 10px;
 }

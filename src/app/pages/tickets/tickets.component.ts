@@ -1,4 +1,3 @@
-// tickets.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.sevice';
 
@@ -8,15 +7,17 @@ import { ApiService } from '../../services/api.sevice';
   styleUrls: ['./tickets.component.scss']
 })
 export class TicketsComponent implements OnInit {
-  users: any[] = []; // Cambiado de user a users
+  users: any[] = [];
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
     this.apiService.getUsers().subscribe(
-      (users: any[]) => { // Cambiado de user a users
-        console.log(users); // Agregar este console.log para verificar los datos recibidos
-        this.users = users; // Cambiado de user a users
+      (response: any) => { // Cambiado de users a response
+        console.log(response); // Agregar este console.log para verificar los datos recibidos
+        if (response && response.$values && response.$values.length > 0) {
+          this.users = response.$values;
+        }
       },
       error => {
         console.error('Error al obtener la lista de usuarios:', error);
