@@ -1,10 +1,25 @@
-<div *ngIf="users && users.length > 0">
-  <h2>Información del usuario</h2>
-  <ul>
-    <li *ngFor="let user of users">
-      <p>Id: {{ user.id }}</p>
-      <p>Nombre de usuario: {{ user.userName }}</p>
-      <p>Correo electrónico: {{ user.email }}</p>
-    </li>
-  </ul>
+<div class="container">
+  <div id="main">
+    <div id="divTable">
+      <h2>Información del usuario</h2>
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th>ID de tecnico</th>
+            <th>Nombre de tecnico</th>
+            <th>Correo electrónico</th>
+            <th>Número de teléfono</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users" class="row-highlight">
+            <td>{{ user.id }}</td>
+            <td>{{ user.userName }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.phoneNumber }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
