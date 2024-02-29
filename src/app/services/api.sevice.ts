@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { iTicket } from '../model/iTicket';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +15,13 @@ export class ApiService {
   // Método para obtener la lista de usuarios
   getUsers(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/User`);
+  }
+
+  getTickets(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/Ticket`);
+  }
+
+  getTicketsByUser(userId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/Ticket/tickets-${userId}`);
   }
 }
