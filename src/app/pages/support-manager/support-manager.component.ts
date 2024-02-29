@@ -1,71 +1,41 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ComponentRef, OnInit } from '@angular/core';
 import { NavbarComponent } from "../../components/navbar/navbar.component";
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { ViewChild } from '@angular/core';
 import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { Incidencia } from 'src/app/model/incidencia';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
-import { Chart } from 'chart.js/auto';
 import { ApiService } from 'src/app/services/api.sevice';
 import { CommonModule } from '@angular/common';
-
-
-
-
+import { iTicketTable } from 'src/app/model/iTicketTable';
+import { Chart } from 'chart.js/auto';
+import { iUserTable } from 'src/app/model/iUserTable';
 
 interface SideNavToggle {
   screenWidth: number;
   collapsed: boolean;
 }
-const ELEMENT_DATA: Incidencia[] = [
-  { number: '1', title: 'Incidencia 1', description: 'Descripcion de la incidencia numero 1', importance: 'Alta', status: 'Pendinete', created: '2022-10-01', post: 'Tecnico 1' },
-  { number: '2', title: 'Incidencia 2', description: 'Descripcion de la incidencia numero 2', importance: 'Media', status: 'Abierta', created: '2022-10-01', post: 'Tecnico 2' },
-  { number: '3', title: 'Incidencia 3', description: 'Descripcion de la incidencia numero 3', importance: 'Baja', status: 'Terminado', created: '2022-10-01', post: 'Tecnico 1' },
-  { number: '4', title: 'Incidencia 4', description: 'Descripcion de la incidencia numero 4', importance: 'Alta', status: 'Abierta', created: '2022-10-01', post: 'Tecnico 3' },
-  { number: '5', title: 'Incidencia 5', description: 'Descripcion de la incidencia numero 5', importance: 'Media', status: 'Terminado', created: '2022-10-01', post: 'Tecnico 1' },
-  { number: '6', title: 'Incidencia 6', description: 'Descripcion de la incidencia numero 6', importance: 'Baja', status: 'Abierta', created: '2022-10-01', post: 'Tecnico 1' },
-  { number: '7', title: 'Incidencia 7', description: 'Descripcion de la incidencia numero 7', importance: 'Alta', status: 'Pendiente', created: '2022-10-01', post: 'Tecnico 3' },
-  { number: '8', title: 'Incidencia 8', description: 'Descripcion de la incidencia numero 8', importance: 'Media', status: 'Abierta', created: '2022-10-01', post: 'Tecnico 1' },
-  { number: '9', title: 'Incidencia 9', description: 'Descripcion de la incidencia numero 9', importance: 'Media', status: 'Pendiente', created: '2022-10-01', post: 'Tecnico 2' },
-  { number: '10', title: 'Incidencia 10', description: 'Descripcion de la incidencia numero 10', importance: 'Baja', status: 'Terminado', created: '2022-10-01', post: 'Tecnico 2' },
-]
+
 @Component({
   selector: 'app-support-manager',
   standalone: true,
   templateUrl: './support-manager.component.html',
   styleUrls: ['./support-manager.component.scss'],
-  imports: [CommonModule, NavbarComponent, MatTableModule, MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatSortModule]
+  imports: [CommonModule, NavbarComponent, MatTableModule, MatSortModule, MatPaginatorModule]
 })
 export class SupportManagerComponent implements AfterViewInit, OnInit {
-
-  title = 'sidenav'
-
+  title = 'sidenav';
   chart: any;
-
-
   isSideNavCollapsed = false;
   screenWidth = 0;
-
-  users: any[] = [];
-
-
-  onToggleSidenav(data: SideNavToggle): void {
-    this.screenWidth = data.screenWidth;
-    this.isSideNavCollapsed = data.collapsed;
-  }
-
-
-  displayedColumns: string[] = ['number', 'title', 'description', 'importance', 'status', 'created', 'post'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  displayedColumns: string[] = ['id', 'title', 'name', 'email', 'priority', 'state', 'timestamp', 'userID'];
+  dataSource = new MatTableDataSource<iTicketTable>();
+  users: iUserTable[] = [];
 
   constructor(private _liveAnnouncer: LiveAnnouncer, private apiService: ApiService) { }
 
   @ViewChild(MatSort) sort!: MatSort;
-
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
@@ -74,25 +44,30 @@ export class SupportManagerComponent implements AfterViewInit, OnInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
-  openNav() {
-    throw new Error('Method not implemented.');
-  }
 
   ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    this.dataSource.sortingDataAccessor = (item, property) => {
-      switch (property) {
-        case 'importance': return this.getImportanceValue(item.importance);
-        default: return item[property];
+    this.dataSource.sortingDataAccessor = (data: iTicketTable, sortHeaderId: string) => {
+      switch (sortHeaderId) {
+        case 'priority':
+          return this.getPriorityValue(data.priority);
+        case 'timestamp':
+          return new Date(data.timestamp).getTime(); // Convertir la fecha a milisegundos para ordenar correctamente
+        default:
+          const value = data[sortHeaderId as keyof iTicketTable]; // Obtener el valor de la propiedad
+          return typeof value === 'string' ? value.toLowerCase() : (typeof value === 'number' ? value : 0); // Convertir a minúsculas si es una cadena o devolver el valor numérico
       }
     };
   }
 
-  getImportanceValue(importance: string): number {
-    switch (importance) {
-      case 'Alta': return 1;
-      case 'Media': return 2;
-      case 'Baja': return 3;
+  getPriorityValue(priority: string): number {
+    switch (priority) {
+      case 'HIGHEST': return 1;
+      case 'HIGH': return 2;
+      case 'MEDIUM': return 3;
+      case 'LOW': return 4;
+      case 'LOWEST': return 5;
       default: return 0;
     }
   }
@@ -108,36 +83,70 @@ export class SupportManagerComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
-
-    this.apiService.getUsers().subscribe(
-      (response: any) => { // Cambiado de users a response
-        console.log(response); // Agregar este console.log para verificar los datos recibidos
-        if (response && response.$values && response.$values.length > 0) {
-          this.users = response.$values;
-        }
+    this.apiService.getTickets().subscribe({
+      next: (response: any) => {
+        console.log('Tickets recibidos', response);
+        // Mapear la respuesta de la API utilizando la interfaz iTicketTable
+        const tickets: iTicketTable[] = response.$values.map((value: any) => {
+          return {
+            id: value.id,
+            title: value.title,
+            name: value.name,
+            email: value.email,
+            timestamp: this.formatDate(value.timestamp),
+            priority: value.priority,
+            state: value.state,
+            userID: value.userID // Asegúrate de asignar el valor correcto
+          };
+        });
+        this.dataSource.data = tickets; // Establecer los datos en la dataSource
+        console.log('Datos mapeados para tabla', tickets);
       },
-      error => {
-        console.error('Error al obtener la lista de usuarios:', error);
+      error: (error: any) => {
+        console.error('Error al obtener los tickets del usuario:', error);
       }
-    );
-    this.createChart();
-    this.createChart2();
-    this.createChart3();
-
+    });
+    this.apiService.getUsers().subscribe({
+      next: (response: any) => {
+        console.log('Users recibidos', response);
+        const users: iUserTable[] = response.$values.map((value: any) => {
+          return {
+            id: value.id,
+            userName: value.userName,
+            email: value.email,
+            phoneNumber: value.phoneNumber
+          };
+        });
+        this.users = users;
+        console.log('Datos mapeados para tabla', users);
+        this.createChart();
+        this.createChart2();
+        this.createChart3();
+      },
+      error: (error: any) => {
+        console.error('Error al obtener los tecnicos:', error);
+      }
+    });
   }
 
   createChart2(): void {
     const canvas = document.getElementById('technicianChart2') as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
 
+    const priorities = ['HIGHEST', 'HIGH', 'MEDIUM', 'LOW', 'LOWEST', 'NOT_SURE'];
+    const incidentCounts = priorities.map(priority => {
+      return this.dataSource.data.filter(ticket => ticket.priority === priority).length;
+    });
+    console.log('datos al crear grafica', this.dataSource.data)
+
     // @ts-ignore
     this.chart = new Chart(ctx, {
       type: 'pie',
       data: {
-        labels: ['Alta', 'Media', 'Baja'], // Replace with actual technician names
+        labels: priorities, // Replace with actual technician names
         datasets: [{
           label: 'Incidencias',
-          data: [3, 4, 3], // Replace with actual number of incidents for each technician
+          data: incidentCounts, // Replace with actual number of incidents for each technician
           backgroundColor: [
             'rgba(255, 100, 147, 0.2)',
             'rgba(116, 92, 216, 0.2)',
@@ -165,14 +174,21 @@ export class SupportManagerComponent implements AfterViewInit, OnInit {
     const canvas = document.getElementById('technicianChart') as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
 
+    const technicianNames = this.users.map(user => user.userName); // Obtener nombres de los técnicos
+    const technicianIds = this.users.map(user => user.id);
+    const incidentCounts = technicianIds.map(id => {
+      // Calcular el número de incidentes para cada técnico
+      return this.dataSource.data.filter(ticket => ticket.userID === id).length;
+    });
+
     // @ts-ignore
     this.chart = new Chart(ctx, {
       type: 'doughnut',
       data: {
-        labels: ['Tecnico 1', 'Tecnico 2', 'Tecnico 3'], // Replace with actual technician names
+        labels: technicianNames, // Replace with actual technician names
         datasets: [{
           label: 'Cantidad de incidencias',
-          data: [5, 3, 2], // Replace with actual number of incidents for each technician
+          data: incidentCounts, // Replace with actual number of incidents for each technician
           backgroundColor: [
             'rgba(255, 100, 147, 0.2)',
             'rgba(116, 92, 216, 0.2)',
@@ -200,9 +216,15 @@ export class SupportManagerComponent implements AfterViewInit, OnInit {
     const canvas = document.getElementById('technicianChart3') as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
   
+    const states = ['PENDING', 'OPENED', 'PAUSED', 'FINISHED'];
+    const incidentCounts = states.map(state => {
+      // Calcular el número de incidentes para cada técnico
+      return this.dataSource.data.filter(ticket => ticket.state === state).length;
+    });
+
     // Generar datos de ejemplo
-    const labels = ['Abierto', 'En proceso', 'Cerrado'];
-    const data = [4, 3, 3];
+    const labels = states;
+    const data = incidentCounts;
     const backgroundColors = [
       'rgba(255, 100, 147, 0.2)',
       'rgba(116, 92, 216, 0.2)',
@@ -229,6 +251,18 @@ export class SupportManagerComponent implements AfterViewInit, OnInit {
         }]
       }
     });
+  }
+
+  formatDate(fecha: string): string {
+    const fechaObj = new Date(fecha);
+    const dia = fechaObj.getDate().toString().padStart(2, '0');
+    const mes = (fechaObj.getMonth() + 1).toString().padStart(2, '0'); // Se suma 1 porque los meses van de 0 a 11
+    const año = fechaObj.getFullYear();
+    const horas = fechaObj.getHours().toString().padStart(2, '0');
+    const minutos = fechaObj.getMinutes().toString().padStart(2, '0');
+    const segundos = fechaObj.getSeconds().toString().padStart(2, '0');
+
+    return `${dia}/${mes}/${año} - ${horas}:${minutos}:${segundos}`;
   }
   
 }

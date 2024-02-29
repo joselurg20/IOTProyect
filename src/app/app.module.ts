@@ -45,6 +45,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     NavbarComponent, 
     FontAwesomeModule,
     SupportManagerComponent,
+    MatPaginatorModule,
 
     BrowserAnimationsModule,
       MatGridListModule,
