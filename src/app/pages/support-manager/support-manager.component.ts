@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { iTicketTable } from 'src/app/model/iTicketTable';
 import { Chart } from 'chart.js/auto';
 import { iUserTable } from 'src/app/model/iUserTable';
+import { iUser } from 'src/app/model/iUser';
 
 interface SideNavToggle {
   screenWidth: number;
@@ -31,6 +32,8 @@ export class SupportManagerComponent implements AfterViewInit, OnInit {
   displayedColumns: string[] = ['id', 'title', 'name', 'email', 'priority', 'state', 'timestamp', 'userID'];
   dataSource = new MatTableDataSource<iTicketTable>();
   users: iUserTable[] = [];
+  selectedRow: any;
+  loggedUserName: string = "";
 
   constructor(private _liveAnnouncer: LiveAnnouncer, private apiService: ApiService) { }
 
@@ -83,6 +86,12 @@ export class SupportManagerComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
+    const userNameFromLocalStorage = localStorage.getItem('userName');
+    if (userNameFromLocalStorage) {
+      this.loggedUserName = userNameFromLocalStorage;
+    } else {
+      console.log('No se encontró ningún nombre de usuario en el localStorage.');
+    }
     this.apiService.getTickets().subscribe({
       next: (response: any) => {
         console.log('Tickets recibidos', response);
@@ -263,6 +272,10 @@ export class SupportManagerComponent implements AfterViewInit, OnInit {
     const segundos = fechaObj.getSeconds().toString().padStart(2, '0');
 
     return `${dia}/${mes}/${año} - ${horas}:${minutos}:${segundos}`;
+  }
+
+  onRowClicked(row: any) {
+    this.selectedRow = row;
   }
   
 }

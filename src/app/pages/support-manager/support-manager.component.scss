@@ -9,7 +9,7 @@
   box-shadow: #e6b113;
 }
 
-h2 {
+h2, h5 {
   font-size: 40px;
   color: #EFB810;
 }
@@ -53,7 +53,7 @@ th:hover {
   background-color: #e6b113 !important;
 }
 
-.row-highlight:hover td {
+.row-highlight:hover td , .row-highlight.selected td {
   background-color: #52525B;
 
 }
@@ -107,4 +107,28 @@ th:hover {
   color: #e6b113;
   box-shadow: #e6b113;
   border-radius: 10px;
+}
+.btn {
+  border-color: #D25454;
+  color:black;
+  background-color: #EFB810;
+  line-height: 0px;
+  margin-left: 1vw;
+}
+
+.btn:hover{
+  color: white;
+  background-color: #141416;
+  border-color: white;
+}
+
+img {
+  width: 25vw;
+}
+
+.header-container {
+  display: flex; /* Hace que los elementos se coloquen en línea */
+  align-items: center; /* Centra verticalmente los elementos */
+  margin-bottom: -90px;
+  margin-top: -60px;
 }
