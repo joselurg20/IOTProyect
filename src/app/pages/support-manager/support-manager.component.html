@@ -1,7 +1,17 @@
 <div class="justify-content-start">
+  <div class="header-container">
+    <img src="/assets/img/IoTlogo.png" alt="">
+    <h5>{{ loggedUserName }}</h5>
+  </div>
   <section class="d-flex">
     <div class="col-md-auto mt-3" id="main">
-      <h2>N.º de Proyectos</h2>
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>Incidencias</h2>
+        <div class="ml-auto"> <!-- Utilizamos la clase ml-auto para alinear los botones a la derecha -->
+          <a class="btn" href="/homepage" type="button">Crear Incidencia</a>
+          <a class="btn" type="button">Mostrar Incidencia</a>
+        </div>
+      </div>
       <div id="divTable">
         <table mat-table [dataSource]="dataSource" matSort #sort (matSortChange)="announceSortChange($event)"
           class="mat-elevation-z8">
@@ -62,7 +72,8 @@
   
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="row-highlight"
-            (mouseover)="highlightRow($event)" (mouseleave)="unhighlightRow($event)"></tr>
+            (mouseover)="highlightRow($event)" (mouseleave)="unhighlightRow($event)"
+            [class.selected]="row === selectedRow" (click)="onRowClicked(row)"></tr>
   
         </table>
       </div>
