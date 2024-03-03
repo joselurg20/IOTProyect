@@ -10,7 +10,8 @@ import { CommonModule } from '@angular/common';
 import { iTicketTable } from 'src/app/model/iTicketTable';
 import { Chart } from 'chart.js/auto';
 import { iUserTable } from 'src/app/model/iUserTable';
-import { iUser } from 'src/app/model/iUser';
+import { LoginService } from 'src/app/services/login.service';
+import { Router } from '@angular/router';
 
 interface SideNavToggle {
   screenWidth: number;
@@ -35,7 +36,8 @@ export class SupportManagerComponent implements AfterViewInit, OnInit {
   selectedRow: any;
   loggedUserName: string = "";
 
-  constructor(private _liveAnnouncer: LiveAnnouncer, private apiService: ApiService) { }
+  constructor(private _liveAnnouncer: LiveAnnouncer, private apiService: ApiService, private loginService: LoginService,
+    private router: Router) { }
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -276,6 +278,11 @@ export class SupportManagerComponent implements AfterViewInit, OnInit {
 
   onRowClicked(row: any) {
     this.selectedRow = row;
+  }
+
+  logout(){
+    this.loginService.logout();
+    this.router.navigate(['/login']);
   }
   
 }

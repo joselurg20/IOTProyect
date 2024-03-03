@@ -48,7 +48,11 @@ export class LoginComponent implements OnInit {
         next: (response) => {
           localStorage.setItem('jwtToken', response);
           console.log('Token JWT almacenado en localStorage:', response);
-          this.router.navigate(['/support-manager']);
+          if(localStorage.getItem('userRole') == 'SupportManager') {
+            this.router.navigate(['/support-manager']);
+          } else if(localStorage.getItem('userRole') == 'SupportTechnician'){
+            this.router.navigate(['/support-technician']);
+          }
         },
         error: (error) => {
           console.error('Error en la solicitud:', error);
