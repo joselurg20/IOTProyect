@@ -17,7 +17,13 @@
                     <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña" formControlName="password">
                 </div>
 
-            
+                <!-- Mensaje de error -->
+                <div class="mb-3">
+                    <p class="errorMsg">
+                        {{ errorMsg }}
+                    </p>
+                </div>
+
                       <!-- Botón de Inicio de Sesión -->
                 <div class="d-grid mb-3">
                     <button class="btn btn-primary" [disabled]="!loginForm.valid" type="submit" class="btn btn-lg">Acceder</button>

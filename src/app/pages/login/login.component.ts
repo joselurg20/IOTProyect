@@ -26,6 +26,7 @@ function passwordValidator(control: FormControl): { [key: string]: any } | null 
 })
 export class LoginComponent implements OnInit {
   public loginForm!: FormGroup; // Define loginForm como un FormGroup
+  public errorMsg: string = "";
 
   constructor(private loginService: LoginService, private router: Router) {}
 
@@ -46,6 +47,7 @@ export class LoginComponent implements OnInit {
       this.loginService.login(email, password)
       .subscribe({
         next: (response) => {
+          this.errorMsg = "";
           localStorage.setItem('jwtToken', response);
           console.log('Token JWT almacenado en localStorage:', response);
           if(localStorage.getItem('userRole') == 'SupportManager') {
@@ -56,6 +58,7 @@ export class LoginComponent implements OnInit {
         },
         error: (error) => {
           console.error('Error en la solicitud:', error);
+          this.errorMsg = "Email o contraseña no válidos."
         }
       });
     }
