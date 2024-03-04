@@ -8,12 +8,6 @@ import { iTicket } from '../model/iTicket';
   providedIn: 'root'
 })
 export class ApiService {
-  assignTechnician(ticketId: number, technicianId: number) {
-    throw new Error('Method not implemented.');
-  }
-  changeTicketStatus(ticketId: number, newStatus: string) {
-    throw new Error('Method not implemented.');
-  }
   private apiUrl = 'https://localhost:7233/api'; // URL base de tu API
 
   constructor(private http: HttpClient) { }
@@ -23,11 +17,26 @@ export class ApiService {
     return this.http.get<any[]>(`${this.apiUrl}/User`);
   }
 
+  getUserById(userId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/User/${userId}`);
+  }
+
   getTickets(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/Ticket`);
   }
 
   getTicketsByUser(userId: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/Ticket/tickets-${userId}`);
+  }
+
+  getTicketById(ticketId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/Ticket/${ticketId}`);
+  }
+  
+  assignTechnician(ticketId: number, userId: number) {
+    return this.http.put<any>(`${this.apiUrl}/Ticket/${ticketId}-asign-${userId}`, null);
+  }
+  changeTicketStatus(ticketId: number, newStatus: string) {
+    throw new Error('Method not implemented.');
   }
 }
