@@ -1,46 +1,46 @@
 <div class="container">
     <h1 class="my-4">Incidencia</h1>
     <form>
-        <div class="row gy-5">
+        <div class="row gy-1">
             <div class="col-6">
                 <div class="p-3"> 
-                    <label for="" class="ticketdata">Titulo</label>
+                    <label for="" class="ticketdata"><u>Titulo</u></label>
                     <p class="ticketdata">{{ ticket.title }}</p>
                 </div>
             </div>
             <div class="col-6">
                 <div class="p-3"> 
-                    <label for="" class="ticketdata">Nombre del Usuario</label>
+                    <label for="" class="ticketdata"><u>Nombre del Usuario</u></label>
                     <p class="ticketdata">{{ ticket.name }}</p>
                 </div>
             </div>
             <div class="col-6">
                 <div class="p-3">
-                    <label for="" class="ticketdata">Email del Usuario</label>
+                    <label for="" class="ticketdata"><u>Email del Usuario</u></label>
                     <p class="ticketdata">{{ ticket.email }}</p>
                 </div>
             </div>
             <div class="col-6">
                 <div class="p-3">
-                    <label for="" class="ticketdata">Fecha de Creación</label>
+                    <label for="" class="ticketdata"><u>Fecha de Creación</u></label>
                     <p class="ticketdata">{{ ticket.timestamp }}</p>
                 </div>
             </div>
             <div class="col-6">
                 <div class="p-3">
-                    <label for="" class="ticketdata">Prioridad</label>
+                    <label for="" class="ticketdata"><u>Prioridad</u></label>
                     <p class="ticketdata">{{ ticket.priority }}</p>
                 </div>
             </div>
             <div class="col-6">
                 <div class="p-3">
-                    <label for="" class="ticketdata">Estado</label>
+                    <label for="" class="ticketdata"><u>Estado</u></label>
                     <p class="ticketdata">{{ ticket.state }}</p>
                 </div>
             </div>
             <div class="col-12">
                 <div class="p-3">
-                    <label for="" class="ticketdata">Técnico encargado</label>
+                    <label for="" class="ticketdata"><u>Técnico Asignado</u></label>
                     <p class="ticketdata">{{ user.id }} - {{ user.userName }}</p>
                 </div>
             </div>
@@ -87,9 +87,8 @@
             <textarea class="form-control" id="mensaje" rows="3" required></textarea>
         </div>
         <div class="mt-3 d-md-flex justify-content-end">
-            <button type="submit" class="btn btn-lg coment">Enviar Comentario</button>
-
-            <button type="submit" class="btn btn-lg coment">Ver comentarios</button>
+            <button type="submit" class="mt-1 btn btn-lg coment">Enviar Comentario</button>
+            <app-modal></app-modal>
         </div>
         <div class="logotipe">
             <img src="/assets/img/IoTlogo.png" alt="">
