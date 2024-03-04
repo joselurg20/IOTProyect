@@ -5,47 +5,62 @@
             <div class="col-6">
                 <div class="p-3"> 
                     <label for="" class="ticketdata">Titulo</label>
-                    <p class="ticketdata">Incidencia</p>
+                    <p class="ticketdata">{{ ticket.title }}</p>
                 </div>
             </div>
             <div class="col-6">
                 <div class="p-3"> 
                     <label for="" class="ticketdata">Nombre del Usuario</label>
-                    <p class="ticketdata">User name</p>
+                    <p class="ticketdata">{{ ticket.name }}</p>
                 </div>
             </div>
             <div class="col-6">
                 <div class="p-3">
                     <label for="" class="ticketdata">Email del Usuario</label>
-                    <p class="ticketdata">Email</p>
+                    <p class="ticketdata">{{ ticket.email }}</p>
                 </div>
             </div>
             <div class="col-6">
                 <div class="p-3">
                     <label for="" class="ticketdata">Fecha de Creación</label>
-                    <p class="ticketdata">10/12/24</p>
+                    <p class="ticketdata">{{ ticket.timestamp }}</p>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="p-3">
+                    <label for="" class="ticketdata">Prioridad</label>
+                    <p class="ticketdata">{{ ticket.priority }}</p>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="p-3">
+                    <label for="" class="ticketdata">Estado</label>
+                    <p class="ticketdata">{{ ticket.state }}</p>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="p-3">
+                    <label for="" class="ticketdata">Técnico encargado</label>
+                    <p class="ticketdata">{{ user.id }} - {{ user.userName }}</p>
                 </div>
             </div>
         </div>
+        <hr>
         <div class="mb-3">
             <label for="tecnico" class="form-label"><i class="fa-solid fa-user"></i>Técnico</label>
-            <select class="form-select" id="tecnico" required>
+            <select class="form-select" id="tecnico" required [(ngModel)]="selectedUserId" name="tecnico">
                 <option value="">Seleccione un técnico</option>
-                <option value="1">Técnico 1</option>
-                <option value="2">Técnico 2</option>
-                <option value="3">Técnico 3</option>
+                <option *ngFor="let user of users" [value]="user.id">{{user.id}} - {{user.userName}}</option>
             </select>
         </div>
         <div class="d-flex justify-content-end">
-            <button type="submit" class="btn btn-lg">Asignar técnico</button>
+            <button type="submit" class="btn btn-lg" (click)="asignTicket()">Asignar técnico</button>
         </div>
         <div class="mb-3">
             <label for="prioridad" class="form-label"><i class="fa-solid fa-bell"></i>Prioridad</label>
             <select class="form-select" id="prioridad" required>
                 <option value="">Seleccione un grado de prioridad</option>
-                <option value="baja">Baja</option>
-                <option value="media">Media</option>
-                <option value="alta">Alta</option>
+                <option *ngFor="let p of priorities" [value]="p">{{p}}</option>
             </select>
         </div>
         <div class="d-flex justify-content-end">
@@ -55,9 +70,7 @@
             <label for="estado" class="form-label"><i class="fa-solid fa-swatchbook"></i>Estado</label>
             <select class="form-select" id="estado" required>
                 <option value="">Seleccione un estado</option>
-                <option value="pendiente">Pendiente</option>
-                <option value="en_progreso">En progreso</option>
-                <option value="resuelto">Resuelto</option>
+                <option *ngFor="let s of states" [value]="s">{{s}}</option>
             </select>
         </div>
         <div class="d-flex justify-content-end">

@@ -292,6 +292,8 @@ export class SupportManagerComponent implements AfterViewInit, OnInit {
 
   onRowClicked(row: any) {
     this.selectedRow = row;
+    console.log('Selected row:', this.selectedRow);
+    localStorage.setItem('selectedTicket', this.selectedRow.id);
   }
 
   logout() {
@@ -300,7 +302,9 @@ export class SupportManagerComponent implements AfterViewInit, OnInit {
   }
 
   tickets() {
-    this.router.navigate(['/tickets']);
+    if(localStorage.getItem('selectedTicket') != null) {
+      this.router.navigate(['/tickets']);
+    }
   }
 
 }
