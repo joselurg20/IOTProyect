@@ -144,12 +144,18 @@ export class SupportTechnicialComponent implements AfterViewInit, OnInit {
           backgroundColor: [
             'rgba(255, 100, 147, 0.2)',
             'rgba(116, 92, 216, 0.2)',
-            'rgba(253, 183, 63, 0.2)'
+            'rgba(253, 183, 63, 0.2)',
+            'rgba(59, 235, 151, 0.2)',
+            'rgba(59, 214, 235, 0.2)',
+            'rgba(255, 255, 255, 0.2)'
           ],
           borderColor: [
             'rgba(255, 100, 147, 1)',
             'rgba(116, 92, 216, 1)',
-            'rgba(253, 183, 63, 1)'
+            'rgba(253, 183, 63, 1)',
+            'rgba(59, 235, 151, 1)',
+            'rgba(59, 214, 235, 1)',
+            'rgba(255, 255, 255, 1)'
           ],
           borderWidth: 1
         }]
@@ -192,12 +198,18 @@ export class SupportTechnicialComponent implements AfterViewInit, OnInit {
           backgroundColor: [
             'rgba(255, 100, 147, 0.2)',
             'rgba(116, 92, 216, 0.2)',
-            'rgba(253, 183, 63, 0.2)'
+            'rgba(253, 183, 63, 0.2)',
+            'rgba(59, 235, 151, 0.2)',
+            'rgba(59, 214, 235, 0.2)',
+            'rgba(255, 255, 255, 0.2)'
           ],
           borderColor: [
             'rgba(255, 100, 147, 1)',
             'rgba(116, 92, 216, 1)',
-            'rgba(253, 183, 63, 1)'
+            'rgba(253, 183, 63, 1)',
+            'rgba(59, 235, 151, 1)',
+            'rgba(59, 214, 235, 1)',
+            'rgba(255, 255, 255, 1)'
           ],
           borderWidth: 1
         }]
@@ -228,12 +240,14 @@ export class SupportTechnicialComponent implements AfterViewInit, OnInit {
     const backgroundColors = [
       'rgba(255, 100, 147, 0.2)',
       'rgba(116, 92, 216, 0.2)',
-      'rgba(253, 183, 63, 0.2)'
+      'rgba(253, 183, 63, 0.2)',
+      'rgba(59, 235, 151, 0.2)',
     ];
     const borderColors = [
       'rgba(255, 100, 147, 1)',
       'rgba(116, 92, 216, 1)',
-      'rgba(253, 183, 63, 1)'
+      'rgba(253, 183, 63, 1)',
+      'rgba(59, 235, 151, 1)',
     ];
   
     // Crear el gráfico utilizando Chart.js

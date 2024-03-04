@@ -6,12 +6,13 @@ import { ApiService } from 'src/app/services/api.sevice';
 import { iTicket } from 'src/app/model/iTicket';
 import { iUserTable } from 'src/app/model/iUserTable';
 import { FormsModule } from '@angular/forms';
+import { ModalComponent } from "../../components/modal/modal.component";
 @Component({
     selector: 'app-tickets',
     standalone: true,
     templateUrl: './tickets.component.html',
     styleUrls: ['./tickets.component.scss'],
-    imports: [CommonModule, NavbarComponent, FormsModule]
+    imports: [CommonModule, NavbarComponent, FormsModule, ModalComponent]
 })
 export class TicketsComponent implements OnInit {
 

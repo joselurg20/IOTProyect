@@ -21,8 +21,13 @@
 
             <!-- Archivos Adjuntos -->
             <div class="form-group">
-                <label for="Attachments"><i class="fa-solid fa-folder"></i>Adjuntar Archivos: </label> <br>
-                <input type="file" class="form-control form-control-lg" id="Attachments" formControlName="Attachments" multiple>
+                <label for="Attachments"><i class="fa-solid fa-folder"></i>Adjuntar Archivos:</label> <br>
+                <input type="file" class="form-control form-control-lg" id="Attachments" formControlName="Attachments" multiple (change)="onFileChange($event)">
+                <!-- Mostrar la vista previa del archivo -->
+                <div *ngIf="previewUrl">
+                    <img [src]="previewUrl" *ngIf="isImageSelected" alt="Vista previa del archivo" class="preview-image">
+                    <a [href]="previewUrl" *ngIf="!isImageSelected" target="_blank">Ver Archivo Adjunto</a>
+                </div>
             </div>
 
             <!-- Nombre del Usuario -->

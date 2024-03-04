@@ -1,16 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-modal',
   standalone: true,
-  imports:[],
+  imports: [CommonModule],
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss']
 })
-export class ModalComponent implements OnInit {
-  
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+export class ModalComponent {
 
+  @Input() archivoSeleccionado: File | null = null;
+  vistaPrevia: string | ArrayBuffer | null = null;
+
+  constructor() { }
+
+  ngOnChanges() {
+    if (this.archivoSeleccionado) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.vistaPrevia = reader.result;
+      };
+      reader.readAsDataURL(this.archivoSeleccionado);
+    }
+  }
 }
