@@ -37,6 +37,13 @@
                 <input type="Email" class="form-control form-control-lg" id="Email" placeholder="Ingrese su email" formControlName="Email">
             </div>
 
+            <!-- Mensaje de error -->
+            <div class="mb-3">
+                <p class="errorMsg">
+                    {{ successMsg }}
+                </p>
+            </div>
+            
             <!-- Botón de Enviar -->
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <button [disabled]="!ticketForm.valid" type="submit" class="btn btn-lg ">Enviar Incidencia</button>
