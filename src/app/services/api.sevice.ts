@@ -8,6 +8,12 @@ import { iTicket } from '../model/iTicket';
   providedIn: 'root'
 })
 export class ApiService {
+  assignTechnician(ticketId: number, technicianId: number) {
+    throw new Error('Method not implemented.');
+  }
+  changeTicketStatus(ticketId: number, newStatus: string) {
+    throw new Error('Method not implemented.');
+  }
   private apiUrl = 'https://localhost:7233/api'; // URL base de tu API
 
   constructor(private http: HttpClient) { }

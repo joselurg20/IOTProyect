@@ -1,25 +1,85 @@
 <div class="container">
-  <div id="main">
-    <div id="divTable">
-      <h2>Información del usuario</h2>
-      <table class="user-table">
-        <thead>
-          <tr>
-            <th>ID de tecnico</th>
-            <th>Nombre de tecnico</th>
-            <th>Correo electrónico</th>
-            <th>Número de teléfono</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let user of users" class="row-highlight">
-            <td>{{ user.id }}</td>
-            <td>{{ user.userName }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.phoneNumber }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+    <h1 class="my-4">Incidencia</h1>
+    <form>
+        <div class="row gy-5">
+            <div class="col-6">
+                <div class="p-3"> 
+                    <label for="" class="ticketdata">Titulo</label>
+                    <p class="ticketdata">Incidencia</p>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="p-3"> 
+                    <label for="" class="ticketdata">Nombre del Usuario</label>
+                    <p class="ticketdata">User name</p>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="p-3">
+                    <label for="" class="ticketdata">Email del Usuario</label>
+                    <p class="ticketdata">Email</p>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="p-3">
+                    <label for="" class="ticketdata">Fecha de Creación</label>
+                    <p class="ticketdata">10/12/24</p>
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="tecnico" class="form-label"><i class="fa-solid fa-user"></i>Técnico</label>
+            <select class="form-select" id="tecnico" required>
+                <option value="">Seleccione un técnico</option>
+                <option value="1">Técnico 1</option>
+                <option value="2">Técnico 2</option>
+                <option value="3">Técnico 3</option>
+            </select>
+        </div>
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-lg">Asignar técnico</button>
+        </div>
+        <div class="mb-3">
+            <label for="prioridad" class="form-label"><i class="fa-solid fa-bell"></i>Prioridad</label>
+            <select class="form-select" id="prioridad" required>
+                <option value="">Seleccione un grado de prioridad</option>
+                <option value="baja">Baja</option>
+                <option value="media">Media</option>
+                <option value="alta">Alta</option>
+            </select>
+        </div>
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-lg">Modificar Prioridad</button>
+        </div>
+        <div class="mb-3">
+            <label for="estado" class="form-label"><i class="fa-solid fa-swatchbook"></i>Estado</label>
+            <select class="form-select" id="estado" required>
+                <option value="">Seleccione un estado</option>
+                <option value="pendiente">Pendiente</option>
+                <option value="en_progreso">En progreso</option>
+                <option value="resuelto">Resuelto</option>
+            </select>
+        </div>
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-lg">Actualizar Estado</button>
+        </div>
+        <hr>
+        <h1>Comentarios</h1>
+        <div class="mb-3">
+            <label for="fichero" class="form-label"><i class="fa-solid fa-file"></i>Fichero</label>
+            <input class="form-control" type="file" id="fichero">
+        </div>
+        <div class="mb-3">
+            <label for="mensaje" class="form-label"><i class="fa-solid fa-message"></i>Mensaje</label>
+            <textarea class="form-control" id="mensaje" rows="3" required></textarea>
+        </div>
+        <div class="mt-3 d-md-flex justify-content-end">
+            <button type="submit" class="btn btn-lg coment">Enviar Comentario</button>
+
+            <button type="submit" class="btn btn-lg coment">Ver comentarios</button>
+        </div>
+        <div class="logotipe">
+            <img src="/assets/img/IoTlogo.png" alt="">
+        </div>
+    </form>
 </div>

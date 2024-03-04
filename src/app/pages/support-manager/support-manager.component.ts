@@ -161,12 +161,18 @@ export class SupportManagerComponent implements AfterViewInit, OnInit {
           backgroundColor: [
             'rgba(255, 100, 147, 0.2)',
             'rgba(116, 92, 216, 0.2)',
-            'rgba(253, 183, 63, 0.2)'
+            'rgba(253, 183, 63, 0.2)',
+            'rgba(59, 235, 151, 0.2)',
+            'rgba(59, 214, 235, 0.2)',
+            'rgba(255, 255, 255, 0.2)'
           ],
           borderColor: [
             'rgba(255, 100, 147, 1)',
             'rgba(116, 92, 216, 1)',
-            'rgba(253, 183, 63, 1)'
+            'rgba(253, 183, 63, 1)',
+            'rgba(59, 235, 151, 1)',
+            'rgba(59, 214, 235, 1)',
+            'rgba(255, 255, 255, 1)'
           ],
           borderWidth: 1
         }]
@@ -203,12 +209,18 @@ export class SupportManagerComponent implements AfterViewInit, OnInit {
           backgroundColor: [
             'rgba(255, 100, 147, 0.2)',
             'rgba(116, 92, 216, 0.2)',
-            'rgba(253, 183, 63, 0.2)'
+            'rgba(253, 183, 63, 0.2)',
+            'rgba(59, 235, 151, 0.2)',
+            'rgba(59, 214, 235, 0.2)',
+            'rgba(255, 255, 255, 0.2)'
           ],
           borderColor: [
             'rgba(255, 100, 147, 1)',
             'rgba(116, 92, 216, 1)',
-            'rgba(253, 183, 63, 1)'
+            'rgba(253, 183, 63, 1)',
+            'rgba(59, 235, 151, 1)',
+            'rgba(59, 214, 235, 1)',
+            'rgba(255, 255, 255, 1)'
           ],
           borderWidth: 1
         }]
@@ -226,7 +238,7 @@ export class SupportManagerComponent implements AfterViewInit, OnInit {
   createChart3(): void {
     const canvas = document.getElementById('technicianChart3') as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
-  
+
     const states = ['PENDING', 'OPENED', 'PAUSED', 'FINISHED'];
     const incidentCounts = states.map(state => {
       // Calcular el número de incidentes para cada técnico
@@ -239,14 +251,16 @@ export class SupportManagerComponent implements AfterViewInit, OnInit {
     const backgroundColors = [
       'rgba(255, 100, 147, 0.2)',
       'rgba(116, 92, 216, 0.2)',
-      'rgba(253, 183, 63, 0.2)'
+      'rgba(253, 183, 63, 0.2)',
+      'rgba(59, 235, 151, 0.2)',
     ];
     const borderColors = [
       'rgba(255, 100, 147, 1)',
       'rgba(116, 92, 216, 1)',
-      'rgba(253, 183, 63, 1)'
+      'rgba(253, 183, 63, 1)',
+      'rgba(59, 235, 151, 1)',
     ];
-  
+
     // Crear el gráfico utilizando Chart.js
     // @ts-ignore
     this.chart = new Chart(ctx, {
@@ -280,9 +294,13 @@ export class SupportManagerComponent implements AfterViewInit, OnInit {
     this.selectedRow = row;
   }
 
-  logout(){
+  logout() {
     this.loginService.logout();
     this.router.navigate(['/login']);
   }
-  
+
+  tickets() {
+    this.router.navigate(['/tickets']);
+  }
+
 }
