@@ -26,12 +26,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth-interceptor.service';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     Error404Component,
-    TicketsComponent,
     NewComponent,
     HelpComponent,
     DashboardComponent,
@@ -43,7 +43,9 @@ import { AuthInterceptor } from './services/auth-interceptor.service';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NavbarComponent, 
+    NavbarComponent,
+    TicketsComponent,
+    ModalComponent, 
     FontAwesomeModule,
     SupportManagerComponent,
     MatPaginatorModule,
