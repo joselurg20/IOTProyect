@@ -17,6 +17,7 @@ import { TicketDTO } from 'src/app/model/TicketDTO';
 export class IncidenciaComponent implements OnInit {
   public ticketForm!: FormGroup;
   private readonly apiUrl = 'https://localhost:7233/api/Ticket';
+  successMsg: string = "";
 
   constructor(private http: HttpClient){}
 
@@ -41,9 +42,11 @@ export class IncidenciaComponent implements OnInit {
       .subscribe({
         next: (response) => {
           console.log('Ticket creado con éxito', response);
+          this.successMsg = "Incidencia creada con éxito. Espere a que un técnico se ponga en contacto con usted mediante el email que ha proporcionado.";    
         },
         error: (error) => {
           console.error('Error en la solicitud', error);
+          this.successMsg = "Error al crear la incidencia.";
         }
       });
       
