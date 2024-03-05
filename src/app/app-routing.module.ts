@@ -11,6 +11,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SupportManagerComponent } from './pages/support-manager/support-manager.component';
 import { ManagerNewComponent } from './pages/manager-new/manager-new.component';
 import { TechnicianTicketComponent } from './pages/technician-ticket/technician-ticket.component';
+import { UserMessageComponent } from './pages/user-message/user-message.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate:[]},
   {path: 'manager-new', component: ManagerNewComponent, canActivate: []},
   {path: 'technician-ticket', component: TechnicianTicketComponent, canActivate: []},
+  {path: 'user-message/:ticketId', component: UserMessageComponent, canActivate: []},
   {path: '**', component: Error404Component},
 
 ];
