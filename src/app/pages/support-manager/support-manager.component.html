@@ -4,9 +4,9 @@
         <img src="/assets/img/IoTlogo.png" alt="">
         <h5>{{ loggedUserName }}</h5>
     </div>
-    <div class="ml-auto">
-        <a class="btn" type="button" (click)="logout()">Log out</a>
-    </div>
+    
+        <a class="alink" type="button" (click)="logout()"><i class="fa-solid fa-right-from-bracket fa-rotate-180"></i>Log out</a>
+    
 </div>
   <section class="d-flex">
     <div class="col-md-auto mt-3" id="main">
@@ -83,16 +83,16 @@
         </table>
       </div>
       <div class="content">
-        <mat-paginator [pageSizeOptions]="[10, 25, 35, 50]" showFirstLastButtons id="paginator" #paginator></mat-paginator>
+        <mat-paginator class="pages" [pageSizeOptions]="[10, 25, 35, 50]" showFirstLastButtons id="paginator" #paginator></mat-paginator>
       </div>
     </div>
   
-    <div class="row">
-      <div class="d-flex">
-        <div class="col-md-auto mt-3" id="section1">
+    <div class="row justify-content-center">
+      <div class="d-flex justify-content-between">
+        <div class="col-md-auto" id="section1">
           <canvas id="technicianChart"></canvas>
         </div>
-        <div class="col-2 m-3" id="section2">
+        <div class="col-2" id="section2">
           <canvas id="technicianChart2"></canvas>
         </div>
       </div>
@@ -107,7 +107,8 @@
   <div class="content">
     <div class="col-md-12 mt-3" id="main">
       <h2>Información de Técnicos</h2>
-      <table class="user-table">
+      <div id="divTable">
+        <table class="user-table">
         <thead>
           <tr>
             <th>ID</th>
@@ -125,9 +126,7 @@
           </tr>
         </tbody>
       </table>
+      </div>
   </div>
     </div>
   </div>
-    
-
- 

@@ -1,48 +1,48 @@
-<a class="btn btn2" (click)="goBack()" type="button">Back</a>
+<a class="btn btn2" (click)="goBack()" type="button"><i class="fa-solid fa-chevron-left"></i></a>
 <div class="container">
     <h1 class="my-4">Incidencia</h1>
     <form>
         <div class="row gy-1">
             <div class="col-6">
-                <div class="p-3"> 
-                    <label for="" class="ticketdata"><u>Titulo</u></label>
-                    <p class="ticketdata">{{ ticket.title }}</p>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="p-3"> 
-                    <label for="" class="ticketdata"><u>Nombre del Usuario</u></label>
-                    <p class="ticketdata">{{ ticket.name }}</p>
+                <div class="p-3">
+                    <label class="ticketdata">Titulo</label>
+                    <p class="font">{{ ticket.title }}</p>
                 </div>
             </div>
             <div class="col-6">
                 <div class="p-3">
-                    <label for="" class="ticketdata"><u>Email del Usuario</u></label>
-                    <p class="ticketdata">{{ ticket.email }}</p>
+                    <label class="ticketdata">Nombre del Usuario</label>
+                    <p class="font">{{ ticket.name }}</p>
                 </div>
             </div>
             <div class="col-6">
                 <div class="p-3">
-                    <label for="" class="ticketdata"><u>Fecha de Creación</u></label>
-                    <p class="ticketdata">{{ ticket.timestamp }}</p>
+                    <label class="ticketdata">Email del Usuario</label>
+                    <p class="font">{{ ticket.email }}</p>
                 </div>
             </div>
             <div class="col-6">
                 <div class="p-3">
-                    <label for="" class="ticketdata"><u>Prioridad</u></label>
-                    <p class="ticketdata">{{ ticket.priority }}</p>
+                    <label class="ticketdata">Fecha de Creación</label>
+                    <p class="font">{{ ticket.timestamp }}</p>
                 </div>
             </div>
             <div class="col-6">
                 <div class="p-3">
-                    <label for="" class="ticketdata"><u>Estado</u></label>
-                    <p class="ticketdata">{{ ticket.state }}</p>
+                    <label class="ticketdata">Prioridad</label>
+                    <p class="font">{{ ticket.priority }}</p>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="p-3">
+                    <label class="ticketdata">Estado</label>
+                    <p class="font">{{ ticket.state }}</p>
                 </div>
             </div>
             <div class="col-12">
                 <div class="p-3">
-                    <label for="" class="ticketdata"><u>Técnico Asignado</u></label>
-                    <p class="ticketdata">{{ user.id }} - {{ user.userName }}</p>
+                    <label class="ticketdata">Técnico Asignado</label>
+                    <p class="font">{{ user.id }} - {{ user.userName }}</p>
                 </div>
             </div>
         </div>
@@ -50,8 +50,8 @@
         <h1>Comentarios</h1>
         <div class="col-12" *ngFor="let message of messages">
             <div class="p-3">
-                <label for="" class="ticketdata"><b>Mensaje</b></label>
-                <p class="ticketdata">{{ message.Content }}</p>
+                <label class="ticketdata"><b>Mensaje</b></label>
+                <p class="font">{{ message.Content }}</p>
                 <div *ngIf="message.AttachmentPaths && message.AttachmentPaths.length > 0">
                     <div *ngFor="let attachment of message.AttachmentPaths let last = last">
                         <button *ngIf="!last" type="button" class="btn" (click)="downloadAttachment(attachment)">Descargar Adjunto</button>

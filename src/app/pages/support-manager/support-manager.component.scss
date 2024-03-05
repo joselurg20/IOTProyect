@@ -100,6 +100,11 @@ th:hover {
   background-color: #202124;
   border-radius: 10px;
 }
+.pages {
+  background-color: #52525B !important;
+
+}
+
 
 #paginator{
   padding: 10px;
@@ -125,12 +130,29 @@ th:hover {
 }
 
 img {
-  width: 25vw;
+  width: 20vw;
 }
 
 .header-container {
-  display: flex; /* Hace que los elementos se coloquen en línea */
-  align-items: center; /* Centra verticalmente los elementos */
+  display: flex;
+  align-items: center; 
   margin-bottom: -90px;
   margin-top: -60px;
+}
+
+.user-table{
+  border-radius:20px ;
+}
+
+.alink{
+  background-color: #EFB810;
+  color: black;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-right: 10px;
+  
 }

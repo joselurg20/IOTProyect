@@ -1,39 +1,30 @@
-<!-- login.component.html -->
 <div class="container mt-lg-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <form [formGroup]="loginForm" (submit)="onSubmit()">
                 <h2 class="mb-3">Inicio de Sesión</h2>
-
-                <!-- Campo de Usuario -->
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="text" class="form-control" id="email" placeholder="Ingrese su email" formControlName="email">
+                    <label for="email" class="form-label"><i class="fa-solid fa-at"></i> Email</label>
+                    <input type="text" class="form-control" id="email" placeholder="Ingrese su email"
+                        formControlName="email">
                 </div>
-
-                <!-- Campo de Contraseña -->
                 <div class="mb-3">
-                    <label for="password" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña" formControlName="password">
+                    <label for="password" class="form-label"><i class="fa-solid fa-lock"></i> Contraseña</label>
+                    <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña"
+                        formControlName="password">
                 </div>
-
-                <!-- Mensaje de error -->
                 <div class="mb-3">
                     <p class="errorMsg">
                         {{ errorMsg }}
                     </p>
                 </div>
-
-                      <!-- Botón de Inicio de Sesión -->
                 <div class="d-grid mb-3">
-                    <button class="btn btn-primary" [disabled]="!loginForm.valid" type="submit" class="btn btn-lg">Acceder</button>
+                    <button class="btn btn-primary" [disabled]="!loginForm.valid" type="submit"
+                        class="btn btn-lg">Acceder</button>
                 </div>
-        
-                <!-- Opción de Recuperar Contraseña -->
                 <div class="link mb-3">
                     <a href="#" class="link-primary-light">¿Olvidó su contraseña? Recupérela aquí</a>
                 </div>
-
             </form>
         </div>
         <div class="logotipe">
