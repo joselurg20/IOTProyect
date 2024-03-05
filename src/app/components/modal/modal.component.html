@@ -14,14 +14,15 @@
                 <button type="button" class="btn-close btn-primary" data-bs-dismiss="modal" aria-label="Close" id="hola"></button>
             </div>
             <div class="modal-body">
-                <p>Aquí se muestra el comentario.</p>
-                <p>aqiui va el archivo</p>
-                <hr>
-                <p>Aquí se muestra el comentario.</p>
-                <p>aqiui va el archivo</p>
-                <hr>
-                <p>Aquí se muestra el comentario.</p>
-                <p>aqiui va el archivo</p>
+                <div *ngFor="let message of messages">
+                    <p>{{ message.Content }}</p>
+                    <div *ngIf="message.AttachmentPaths && message.AttachmentPaths.length > 0">
+                        <div *ngFor="let attachment of message.AttachmentPaths let last = last">
+                            <button *ngIf="!last" type="button" class="btn" (click)="downloadAttachment(attachment)">Descargar Adjunto</button>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn" data-bs-dismiss="modal">Cerrar</button>
