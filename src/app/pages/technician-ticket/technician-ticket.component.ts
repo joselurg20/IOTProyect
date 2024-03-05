@@ -1,43 +1,33 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { NavbarComponent } from "../../components/navbar/navbar.component";
+import { CommonModule } from '@angular/common';
 import { iTicketDescriptor } from 'src/app/model/iTicketDescriptor';
-import { ApiService } from 'src/app/services/api.sevice';
-import { iTicket } from 'src/app/model/iTicket';
 import { iUserTable } from 'src/app/model/iUserTable';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ModalComponent } from "../../components/modal/modal.component";
+import { ApiService } from 'src/app/services/api.sevice';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
+import { ModalComponent } from 'src/app/components/modal/modal.component';
+import { iMessage } from 'src/app/model/iMessage';
+
 @Component({
-    selector: 'app-tickets',
-    standalone: true,
-    templateUrl: './tickets.component.html',
-    styleUrls: ['./tickets.component.scss'],
-    imports: [CommonModule, NavbarComponent, FormsModule, ModalComponent, ReactiveFormsModule]
+  selector: 'app-technician-ticket',
+  standalone: true,
+  imports: [CommonModule, NavbarComponent, FormsModule, ReactiveFormsModule],
+  templateUrl: './technician-ticket.component.html',
+  styleUrls: ['./technician-ticket.component.scss']
 })
-export class TicketsComponent implements OnInit {
+export class TechnicianTicketComponent implements OnInit {
 
   public ticket: iTicketDescriptor = {} as iTicketDescriptor;
   public user: iUserTable = {} as iUserTable;
-  public users: iUserTable[] = [];
-  public priorities: string[] = ['NOT_SURE', 'LOWEST', 'LOW', 'MEDIUM', 'HIGH', 'HIGHEST'];
-  public states: string[] = ['PENDING', 'OPENED', 'PAUSED', 'FINISHED'];
-  selectedUserId: number = 0;
-  selectedPriority: string = '';
-  selectedPriorityValue: number = -1;
-  selectedState: string = '';
-  selectedStateValue: number = -1;
+  public messages: iMessage[] = [];
   public messageForm!: FormGroup;
   private readonly apiUrl = 'https://localhost:7233/api/Message';
-  successMsg: string = '';
+  successMsg: string = "";
   previewUrl: string | ArrayBuffer | null = null;
   isImageSelected: boolean = false;
-  public techSuccessMsg = '';
-  public prioSuccessMsg = '';
-  public stateSuccessMsg = '';
-  public success: boolean = true;
 
   constructor(private apiService: ApiService, private router: Router, private http: HttpClient) { }
 
@@ -63,6 +53,22 @@ export class TicketsComponent implements OnInit {
             messages: []
           };
           console.log('Ticket Recibido', this.ticket);
+          this.apiService.getMessagesByTicket(this.ticket.id).subscribe({
+            next: (response: any) => {
+              console.log('response', response);
+              this.messages = response.$values.map((message: any) => {
+                return {
+                  Id: message.id,
+                  Content: message.content,
+                  AttachmentPaths: message.attachmentPaths.$values.map((attachmentPath: any) => attachmentPath.path),
+                  ticketID: message.ticketID
+                }
+              })
+            },
+            error: (error: any) => {
+              console.error('Error al obtener los mensajes del ticket', error);
+            }
+          });
           this.apiService.getUserById(this.ticket.userID).subscribe({
             next: (response: any) => {
               this.user = {
@@ -81,81 +87,8 @@ export class TicketsComponent implements OnInit {
           console.error('Error al obtener el ticket', error);
         }
       });
-      
-      this.apiService.getUsers().subscribe({
-        next: (response: any) => {
-          this.users = response.$values.map((value: any) => {
-            return {
-              id: value.id,
-              userName: value.userName,
-              email: value.email,
-              phoneNumber: value.phoneNumber
-            };
-          });
-        },
-        error: (error: any) => {
-          console.error('Error al obtener los usuarios', error);
-        }
-      })
     }
     
-  }
-
-  asignTicket() {
-    if(this.selectedUserId != 0){
-      if (this.selectedUserId) {
-        this.apiService.assignTechnician(this.ticket.id, this.selectedUserId).subscribe({
-            next: () => {
-                console.log('Técnico asignado correctamente');
-                this.techSuccessMsg = "Técnico asignado correctamente";
-                setTimeout(() => {
-                  this.techSuccessMsg = "";
-                }, 5000);
-            },
-            error: (error: any) => {
-                console.error('Error al asignar técnico', error);
-            }
-        });
-    } else {
-        console.warn('Por favor, seleccione un técnico');
-    }
-    }
-  }
-
-  changePriority() {
-    this.selectedPriorityValue = this.getPriorityValue(this.selectedPriority);
-    if(this.selectedPriorityValue != -1){
-      this.apiService.changeTicketPriority(this.ticket.id, this.selectedPriorityValue).subscribe({
-        next: () => {
-          console.log('Prioridad cambiada correctamente');
-          this.prioSuccessMsg = "Prioridad cambiada correctamente";
-                setTimeout(() => {
-                  this.prioSuccessMsg = "";
-                }, 5000);
-        },
-        error: (error: any) => {
-          console.error('Error al cambiar la prioridad', error);
-        }
-      })
-    }
-  }
-
-  changeState() {
-    this.selectedStateValue = this.getStateValue(this.selectedState);
-    if(this.selectedStateValue != -1){
-      this.apiService.changeTicketState(this.ticket.id, this.selectedStateValue).subscribe({
-        next: () => {
-          console.log('Estado cambiado correctamente');
-          this.stateSuccessMsg = "Estado cambiado correctamente";
-                setTimeout(() => {
-                  this.stateSuccessMsg = "";
-                }, 5000);
-        },
-        error: (error: any) => {
-          console.error('Error al cambiar el estado', error);
-        }
-      })
-    }
   }
 
   onSubmit() {
@@ -166,29 +99,20 @@ export class TicketsComponent implements OnInit {
       .subscribe({
         next: (response) => {
           console.log('Message creado con éxito', response);
-          this.success = true;
           this.successMsg = "Mensaje creado con éxito.";
-          setTimeout(() => {
-            this.successMsg = "";
-          }, 5000);
-
+          location.reload(); 
         },
         error: (error) => {
           console.error('Error en la solicitud', error);
-          this.success = false;
           this.successMsg = "Error al crear el mensaje.";
-          setTimeout(() => {
-            this.successMsg = "";
-          }, 5000);
         }
       });
-      
     }
   }
 
   goBack() {
     localStorage.removeItem('selectedTicket');
-    this.router.navigate(['/support-manager']);
+    this.router.navigate(['/support-technician']);
   }
 
   createMessage(Content: string, TicketID: number): Observable<any> {
@@ -215,6 +139,26 @@ export class TicketsComponent implements OnInit {
   
     return this.http.post<any>(this.apiUrl, formData);
   }
+
+  downloadAttachment(attachmentPath: string) {
+    const pathPrefix = 'C:/ProyectoIoT/Back/ApiTest/AttachmentStorage/';
+    const fileName = attachmentPath.substring(pathPrefix.length);
+    this.downloadFile(attachmentPath, fileName);
+  }
+  
+  downloadFile(data: any, fileName: string) {
+    const blob = new Blob([data], { type: 'application/octet-stream' });
+  
+    const url = window.URL.createObjectURL(blob);
+  
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = fileName;
+  
+    link.click();
+  
+    window.URL.revokeObjectURL(url);
+  }
   
   formatDate(fecha: string): string {
     const fechaObj = new Date(fecha);
@@ -226,26 +170,6 @@ export class TicketsComponent implements OnInit {
     const segundos = fechaObj.getSeconds().toString().padStart(2, '0');
 
     return `${dia}/${mes}/${año} - ${horas}:${minutos}:${segundos}`;
-  }
-
-  getPriorityValue(priority: string): number {
-    switch (priority) {
-      case 'HIGHEST': return 1;
-      case 'HIGH': return 2;
-      case 'MEDIUM': return 3;
-      case 'LOW': return 4;
-      case 'LOWEST': return 5;
-      default: return 0;
-    }
-  }
-
-  getStateValue(state: string): number {
-    switch (state) {
-      case 'OPENED': return 1;
-      case 'PAUSED': return 2;
-      case 'FINISHED': return 3;
-      default: return 0;
-    }
   }
 
   onFileChange(event: any) {
@@ -261,4 +185,3 @@ export class TicketsComponent implements OnInit {
   }
 
 }
-

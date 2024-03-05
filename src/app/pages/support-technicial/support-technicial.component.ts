@@ -281,6 +281,13 @@ export class SupportTechnicialComponent implements AfterViewInit, OnInit {
 
   onRowClicked(row: any) {
     this.selectedRow = row;
+    localStorage.setItem('selectedTicket', this.selectedRow.id);
+  }
+
+  showTicket() {
+    if(localStorage.getItem('selectedTicket') != null) {
+      this.router.navigate(['/technician-ticket']);
+    }
   }
 
   logout(){
