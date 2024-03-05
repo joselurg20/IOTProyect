@@ -171,6 +171,7 @@ export class TicketsComponent implements OnInit {
           setTimeout(() => {
             this.successMsg = "";
           }, 5000);
+          location.reload();
 
         },
         error: (error) => {
