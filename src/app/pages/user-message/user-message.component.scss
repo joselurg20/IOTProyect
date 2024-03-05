@@ -1,0 +1,84 @@
+*{
+    padding: 5px;
+}
+
+.p-3{
+    padding: 20px;
+    background-color: #141416;
+    border-radius: 15px;
+}
+
+.container{
+    margin: 2rem auto;
+    border-radius: 25px;
+    background-color: #202124;
+    width: 900px;
+    padding: 20px;
+    color:/* #141416*/ white;
+    outline: none;
+    box-shadow: none;
+}
+
+.ticketdata{
+    color: #EFB810;
+    font-size: 21px;
+}
+
+label{
+    font-size: 20px;
+    color: white;
+}
+
+p{
+    font-size: 16px;
+}
+
+h1{
+    
+    color: #EFB810;
+    text-align: center;
+}
+.btn{
+    border-color: #D25454;
+    color:black;
+    background-color: #EFB810;
+    width:10vw;
+    height: 50px;
+}
+
+.btn:hover{
+    color: white;
+    background-color: #141416;
+    border-color: white;
+}
+
+
+.logotipe{
+    text-align: center;
+    
+}
+
+  
+img{
+    width: 350px; 
+    height: auto;
+}
+
+.coment{
+    margin-left: 1vw;
+}
+
+.btn2 {
+    border-color: #D25454;
+    color:black;
+    background-color: #EFB810;
+    margin-left: 1vw;
+    margin-top: 20px;
+    font-size: 22px;
+  }
+  
+  .btn2:hover{
+    color: white;
+    background-color: #141416;
+    border-color: white;
+  }
