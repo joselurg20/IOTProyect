@@ -24,9 +24,16 @@
     font-size: 21px;
 }
 
+
+.font{
+    font-size: 18px;
+    color: white;// #efb710b4 ;
+    margin-left:18px ;
+}
+
+
 label{
     font-size: 20px;
-
 }
 
 p{
@@ -34,7 +41,7 @@ p{
 }
 
 h1{
-    
+
     color: #EFB810;
     text-align: center;
 }
@@ -55,12 +62,12 @@ h1{
 
 .logotipe{
     text-align: center;
-    
+
 }
 
-  
+
 img{
-    width: 350px; 
+    width: 350px;
     height: auto;
 }
 
@@ -69,14 +76,16 @@ img{
 }
 
 .btn2 {
-    border-color: #D25454;
-    color:black;
-    background-color: #EFB810;
-    margin-left: 1vw;
-    margin-top: 20px;
-    font-size: 22px;
-  }
-  
+  border-color: #D25454;
+  color:black;
+  background-color: #EFB810;
+  margin-left: 1vw;
+  margin-top: 20px;
+  font-size: 22px;
+  width: 60px;
+  height: 44px;
+}
+
   .btn2:hover{
     color: white;
     background-color: #141416;
